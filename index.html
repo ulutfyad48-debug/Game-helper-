@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ڈیزل پزلز - مدد</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Poppins:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { 
+            --gold: #ffd700; 
+            --accent: #ff0a54; 
+            --accent2: #00d9ff; 
+            --bg: #05081a; 
+            --card: #121833;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            background: var(--bg);
+            color: #fff;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: var(--card);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--accent2);
+            box-shadow: 0 4px 15px rgba(0, 217, 255, 0.2);
+        }
+        
+        .nav-btn {
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+        }
+        
+        .game-btn { 
+            background: linear-gradient(45deg, var(--accent), #ff477e); 
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 10, 84, 0.3);
+        }
+        
+        .game-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 10, 84, 0.5);
+        }
+
+        .hero-section {
+            padding: 40px 15px;
+            animation: fadeIn 1s ease-in;
+        }
+        
+        .page-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            background: linear-gradient(to right, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        .help-card {
+            background: var(--card);
+            width: 90%;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            padding: 30px 20px;
+            border-radius: 25px;
+            border: 2px solid var(--accent2);
+            box-shadow: 0 8px 30px rgba(0, 217, 255, 0.15);
+        }
+        
+        .slider-container {
+            position: relative;
+            width: 100%;
+            min-height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .step-img {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            object-fit: contain;
+            display: none;
+            border-radius: 10px;
+        }
+        
+        .step-img.active {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(255, 10, 84, 0.4);
+        }
+        
+        .slider-nav {
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        
+        .slider-btn {
+            background: linear-gradient(135deg, var(--accent2), #0ea5e9);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            flex: 1;
+            transition: 0.3s;
+            font-family: 'Noto Nastaliq Urdu', serif;
+        }
+        
+        .slider-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 217, 255, 0.4);
+        }
+        
+        .slider-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .step-dots {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .dot {
+            height: 12px;
+            width: 12px;
+            background: #475569;
+            border-radius: 50%;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        
+        .dot.active {
+            background: var(--accent2);
+            transform: scale(1.3);
+            box-shadow: 0 0 15px var(--accent2);
+        }
+        
+        .info-box {
+            background: rgba(255, 10, 84, 0.1);
+            border: 1px solid var(--accent);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: right;
+        }
+        
+        .info-box h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .info-box ul {
+            list-style: none;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        
+        .info-box li {
+            margin-bottom: 10px;
+            color: #e2e8f0;
+        }
+        
+        .info-box li::before {
+            content: "✓ ";
+            color: var(--accent2);
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        
+        .contact-section {
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid var(--accent2);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .contact-section h3 {
+            color: var(--accent2);
+            margin-bottom: 15px;
+        }
+        
+        .whatsapp-links {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .wa-btn {
+            background: #16a34a;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+        
+        .wa-btn:hover {
+            background: #15803d;
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-header">
+        <a href="YOUR_GAME_WEBSITE_LINK" class="nav-btn game-btn">
+            <i class="fas fa-gamepad"></i> گیم کھیلیں
+        </a>
+        <div style="font-size: 1.1rem; font-weight: bold; color: var(--accent2);">
+            <i class="fas fa-question-circle"></i> مدد سینٹر
+        </div>
+    </div>
+
+    <div class="hero-section">
+        <h1 class="page-title">DIESEL PUZZLES</h1>
+        <p class="subtitle">گیم کھیلنے کا مکمل طریقہ</p>
+
+        <div class="help-card">
+            <div class="slider-container">
+                <span class="step-number" id="stepNumber">مرحلہ 1</span>
+                
+                <img class="step-img active" src="https://lh3.googleusercontent.com/d/1ASYGpB7tT1MHb6BFJ9dJjzF9wANdFeUE" alt="Step 1">
+                <img class="step-img" src="https://lh3.googleusercontent.com/d/1p_Op3LW7KFoFZKGx-00sLLcYD3v_tsOi" alt="Step 2">
+                <img class="step-img" src="https://lh3.googleusercontent.com/d/1WkrgrSo0MPTgsx-e7KA9iYWi3ZuDcwpB" alt="Step 3">
+                <img class="step-img" src="https://lh3.googleusercontent.com/d/1GFL5zYTRXuwybjstp0CkyIpmd5VMB7OE" alt="Step 4">
+                <img class="step-img" src="https://lh3.googleusercontent.com/d/1Mljq-FRheU9jHKiqXQvWSqaexKjoZQsJ" alt="Step 5">
+            </div>
+
+            <div class="step-dots">
+                <span class="dot active" onclick="goToStep(0)"></span>
+                <span class="dot" onclick="goToStep(1)"></span>
+                <span class="dot" onclick="goToStep(2)"></span>
+                <span class="dot" onclick="goToStep(3)"></span>
+                <span class="dot" onclick="goToStep(4)"></span>
+            </div>
+
+            <div class="slider-nav">
+                <button class="slider-btn" onclick="changeStep(1)">
+                    <i class="fas fa-arrow-left"></i> اگلا
+                </button>
+                <button class="slider-btn" onclick="changeStep(-1)">
+                    <i class="fas fa-arrow-right"></i> پیچھے
+                </button>
+            </div>
+
+            <div class="info-box">
+                <h3>📋 اہم ہدایات:</h3>
+                <ul>
+                    <li>گیم شروع کرنے سے پہلے 50 روپے کا کوڈ خریدیں</li>
+                    <li>واٹس ایپ پر رابطہ کر کے کوڈ حاصل کریں</li>
+                    <li>کوڈ ڈال کر اپنا نام لکھیں</li>
+                    <li>5 سوالات کے صحیح جوابات دیں</li>
+                    <li>ہر سوال کے لیے 90 سیکنڈ کا وقت ہے</li>
+                    <li>جیتنے پر 300 روپے کا انعام ملے گا</li>
+                </ul>
+            </div>
+
+            <div class="contact-section">
+                <h3>💬 مدد چاہیے؟ رابطہ کریں:</h3>
+                <div class="whatsapp-links">
+                    <a href="https://wa.me/923159226260?text=سلام!%20مجھے%20ڈیزل%20پزلز%20کے%20بارے%20میں%20مدد%20چاہیے" target="_blank" class="wa-btn">
+                        <i class="fab fa-whatsapp"></i> واٹس ایپ 1
+                    </a>
+                    <a href="https://wa.me/923125540048?text=سلام!%20مجھے%20ڈیزل%20پزلز%20کے%20بارے%20میں%20مدد%20چاہیے" target="_blank" class="wa-btn">
+                        <i class="fab fa-whatsapp"></i> واٹس ایپ 2
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 0;
+        const steps = document.querySelectorAll('.step-img');
+        const dots = document.querySelectorAll('.dot');
+        const stepNumber = document.getElementById('stepNumber');
+
+        function changeStep(n) {
+            steps[currentStep].classList.remove('active');
+            dots[currentStep].classList.remove('active');
+            
+            currentStep = (currentStep + n + steps.length) % steps.length;
+            
+            steps[currentStep].classList.add('active');
+            dots[currentStep].classList.add('active');
+            stepNumber.innerText = "مرحلہ " + (currentStep + 1);
+        }
+
+        function goToStep(index) {
+            steps[currentStep].classList.remove('active');
+            dots[currentStep].classList.remove('active');
+            
+            currentStep = index;
+            
+            steps[currentStep].classList.add('active');
+            dots[currentStep].classList.add('active');
+            stepNumber.innerText = "مرحلہ " + (currentStep + 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeStep(1);
+            if (e.key === 'ArrowRight') changeStep(-1);
+        });
+
+        // Touch swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.querySelector('.slider-container').addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.querySelector('.slider-container').addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) changeStep(1);
+            if (touchEndX > touchStartX + 50) changeStep(-1);
+        }
+    </script>
+
+</body>
+</html>
